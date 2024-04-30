@@ -99,7 +99,7 @@ body {
         background-color: #93a9e5ab;
         border-radius: 1vh;
         color: rgb(255, 255, 255);
-        margin-left: 3vw;
+        margin-left: 0vw;
         font-size: 2vw;
        /* font-size: 2.3vw;*/
     }
@@ -152,6 +152,14 @@ body {
 
 }
 
+
+.enviar{
+    width: 500px;
+    background-color:rgb(203, 8, 8);
+    border-radius: 1vh;
+
+    
+}
 label {
     width: auto;
     display: inline-block;
@@ -202,7 +210,9 @@ button:hover {
 
 label1 {
     font-weight: bolder;
-    color: aliceblue;
+    color: rgb(255, 240, 244);
+    padding: 0;
+    margin: 0;
 }
 
 .s {
