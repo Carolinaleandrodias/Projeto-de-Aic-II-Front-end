@@ -247,3 +247,13 @@ label1 {
     transition: 0.2s;
     font-size: 2vh;
 }
+
+.data {
+    width: 100%;
+    height: 3.5%;
+    position: absolute;
+    background-color: #2872A6;
+    text-align: center;
+    margin-top: 95vh
+
+}
