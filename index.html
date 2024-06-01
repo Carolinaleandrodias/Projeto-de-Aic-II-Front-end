@@ -2,62 +2,60 @@
 
 <html>
 
-<head>
+    <head>
+        <!--Link das fontes tirado do google fonts. fonte: League Spartan-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+        <!--Fontes sempre antes do Style!-->
 
-    <!--Link das fontes tirado do google fonts. fonte: League Spartan-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <!--Fontes sempre antes do Style!-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>site de agendamento c3</title>
+        <link rel="stylesheet" href="style.css">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>site de agendamento c3</title>
-    <link rel="stylesheet" href="style.css">
-    <title>Primeira pagina2</title>
 
-    
+    </head>
 
-</head>
+    <body>
 
-<body>
+        <div class="jeff">
 
-    
-
-    <div id="jeff">
-
-        <h1 class="text1"> Entre na sua conta </h1>
-
-        <!-- INICIO DO FORMULÁRIO -->
-        <form class="sing" action="GET">
-
-            <div id="singin">
-               
-                <label>Matricula</label><input type="text" />
-                <label>Senha</label><input type="password" />
-            
+            <div id="emily">
+                <img class="img1" src="unnamed.png">
+                <h1 class="text2">Olá, seja <br /> bem-vindo!</h1>
+                <h1 class="text3">Sistema de agendamento de salas</h1>
+                <p class="text4">Acesse a sua conta agora!</p>
+                <img class = "img2" src="agendamento-01.png">
             </div>
 
-            <button type="submit"><label1><a class="enviar" href="pagina2.html">Enviar</a></label1></button>
+            <div class="container">
 
-        </form>
-        <!-- Fim do Formulário -->
+                    <h1 class="text1"> Entre na sua conta </h1>
+                
+                    <a href="#" target="_blank" class="link1"> Criar uma conta nova </a>
+                
+<!------------------------  INICIO DO FORMULÁRIO --------------------------------------->
+                <form class="sing" action="GET">
 
-        <div id="jeff2">
-            <div class="button"><a href="#" target="_blank"> Criar uma conta nova </a></div>
+                    <div id="singin">
+                        <label>Matricula:</label><input type="text" id="matricula" required/>
+                        <label>Senha:</label><input type="password" id="senha" required/>
+                        <a href="#" class="esqueci"> Esqueci a senha</a>
+                        <div class="button">
+                            <button type="submit"><label1>Entrar</label1></button>
+                        </div>
+                    </div>
+                    
+                </form>
+            
+            </div>    
+<!------------------------ FIM DO FORMULÁRIO -------------------------------------------->
         </div>
 
-        <div id="emily">
-            <h1 class="text">Olá, seja <br /> bem-vindo!</h1>
-        </div>
-
-
-
-    </div>
-    <!-- Descrição de Desenvolvimento -->
-    <div class="desen-cont">
-        <div class="desen" title="Desenvolvedores"> Sendo Desenvolvido por Emy e Jeff</div>
-    </div>
-</body>
-
+        <!-- Descrição de Desenvolvimento -->
+       <div class="footer">
+            <p>Sendo Desenvolvido por Emy & Jeff</p>
+       </div>
+       
 </html>
