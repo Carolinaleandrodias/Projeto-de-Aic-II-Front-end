@@ -127,8 +127,8 @@ body {
     width: 55%;
     flex-direction: column;
     text-align: center;
-    overflow:scroll;
-}
+    /*overflow:scroll; */
+}               
 
 
 
