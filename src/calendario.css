@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+body {
+    display: flex;
+    background: #FFFFFF;
+    margin: 0%;
+    padding: 0%;
+}
+
+.calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #3335bb;
+    width: 100vw;
+    
+    
+}
+
+/* direcao e tam de onde o agendamentos esta */
+.agendamentos {
+    display: flex;
+    background: #9ed489;
+    padding-left: 2%;
+    padding-top: 1%;
+
+}
+
+.semana {
+    font-family: "League Spartan", sans-serif;
+    padding-right: 4%;
+    padding-top: 1%;
+    background: rgb(171, 50, 50);
+    display: flex;
+    align-items: center;
+    color: #2872A6;
+}
+    
+
+.semana__seta{
+    width: 4vh;
+    height: 3vh;
+    margin-bottom: 4%;
+
+}
+
+.agendamentos___texto{
+    font-family: "League Spartan", sans-serif;
+    padding-left: 2%;
+    color: #2872A6;
+}
+
+.agendamentos__logo {
+    width: 10vh;
+}
