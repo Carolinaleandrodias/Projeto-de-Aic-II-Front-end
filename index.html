@@ -18,45 +18,58 @@
     </head>
 
     <body>
-
-        <div class="jeff">
-
-            <div id="emily">
-                <img class="img1" src="unnamed.png">
-                <img class="furg" src="furg.png">
-                <h1 class="text2">Olá, seja <br /> bem-vindo!</h1>
-                <h1 class="text3">Sistema de <br> agendamento de salas</h1>
-                <p class="text4">Acesse a sua conta agora!</p>
-                <img class = "img2" src="agendamento-01.png">
-            </div>
-
-            <div class="container">
-
-                    <h1 class="text1"> Entre na sua conta </h1>
+        
+     <img id="furg" src="image/furg.png"> 
+        
+        <div class="container">
+        
+            <div class="toggle-container">
                 
-                    <a href="#" target="_blank" class="link1"> Criar uma conta nova </a>
+                <div class="toggle"> 
+                       <!--<img id="img1" src="unnamed.png">-->
                 
-<!------------------------  INICIO DO FORMULÁRIO --------------------------------------->
-                <form class="sing" action="GET">
+                    <div class = "toggle-panel toggle-left">
+                         
+                        <h1 id="text1">Olá, seja <br/> bem-vindo!</h1>
+                        <h1 id="text2">Sistema de agendamento de salas</h1>
+                        <p>Acesse a sua conta agora!</p>
+                        <img src="image/agendamento-01.png">
 
-                    <div id="singin">
-                        <label>Matricula:</label><input type="text" id="matricula" required/>
-                        <label>Senha:</label><input type="password" id="senha" required/>
-                        <a href="#" class="esqueci"> Esqueci a senha</a>
-                        <div class="button">
-                            <button type="submit"><label1>Entrar</label1></button>
-                        </div>
                     </div>
-                    
-                </form>
+                </div>
+            </div>
+<!------------------------  INICIO DO FORMULÁRIO --------------------------------------->
+        
+            <div class="form-container sing-in">
+                        
+                        <form action="GET">
+                              
+                            <h1> Entre na sua conta </h1>
+                            <a  href="#" target="_blank" id="link1" > Criar uma conta nova </a>                            
+                            <input type="text" id="matricula" placeholder="Usuário" required/>
+                            <input type="password" id="senha" placeholder="Senha" required/>
+                           <a href="#" id="forget">Esqueci a senha</a>
+                           <a href="agenda.html"><button type="submit" value="submit">ENTRAR</button></a>
+
+                        </form>
+                
+            </div>
             
-            </div>    
 <!------------------------ FIM DO FORMULÁRIO -------------------------------------------->
         </div>
+        <!--         CRIAÇÃO DE CONTA            
 
-        <!-- Descrição de Desenvolvimento -->
-       <div class="footer">
+        <input type="text" id="nome" placeholder="Nome" required/>
+        <input type="date" id="birthday" required/>
+        <input type="text" id="matricula" placeholder="Usuário" required/>
+        <input type="password" id="senha" placeholder="Senha" required/>
+        <input type="password" id="senha" placeholder="Senha" required/>
+
+        -->
+
+        <!-- Descrição de Desenvolvimento
+        <div class="footer">
             <p>Sendo Desenvolvido por Emy & Jeff</p>
-       </div>
-       
+       </div>    
+        -->
 </html>

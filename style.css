@@ -1,63 +1,59 @@
 * {
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: "League Spartan";
 
 }
 
-html,
 body {
-    height: 100%;
-}
 
-body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
-    margin: 0;
-    justify-content: center;
     align-items: center;
-    
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
     /* background: #eabeaf; */
 }
+#furg{
 
-.jeff {
-    
-    display: flex;
-    width: 60%;
-    height: 65%;
+    margin: -8% -5% 2% 80%;
+    width: 70px;
+}
+
+.container {
+
     background-color: #2872A6;
-    border: solid 1px;
-    position: relative;
     border-radius: 25px;
-}
-
-
-
-
-/* -------------------------- LADO ESQUERDO -------------------------- */
-
-#emily {
-
-    display: flex;
-    border: solid 1.8px;
-    width: 42%;
-   /* height: 100%; */
-    background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(141, 162, 233));
-    /* rgb(194, 159, 201));*/
-    /*background-image: linear-gradient(to bottom, white 40%, rgba(128, 0, 128)); */
-    box-shadow: 2px 2px 5px #494747;
+    /* Sombra do container */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
-    border-radius: 25px;
-    flex-direction: column;
+    /*'Esconde' os itens que passam do tamanho do container */
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    /* width: 60%;
+    height: 65%; */
+    
+    /* border: solid 1px; */ 
 }
-
-.img1{
-
-    width: 20%;
-    margin-left: 2vh;
-    margin-top: 2vh;
-
+/*
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
 }
+/* verr */
+/* .container img{
+    
+    width: 100px; 
+    
+} */
+
 
 .furg{
     position: absolute;
@@ -65,190 +61,185 @@ body {
     top: 3.9%;
     width: 9%;
     margin-right: 30vh;
-   
-
-
 
 }
-.text2 {
 
-    margin-top: 6% ;  
-    /*padding-top: 18%; */
-    font-size: 5vh;
-    text-align: center;
-    color: #2264a5;
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 10px;
     
 }
 
-.text3{
-        
-    margin: 3vh;
-    padding: 1vh;
-    margin-top: 6vh;
-    font-size: 4vh;
-    text-align: center;
-    color: #1c5b9b;
-    background-color: #93a9e55d;  
-    border-radius: 1vh;
-    overflow:-moz-hidden-unscrollable
+.container form{
     
-    
-    
-}
-
-.text4{
-
-    margin: 1%;
-    padding: 1%;
-    margin-top: 1vh;
-    text-align: center;
-    color: #136aa8;
-    font-size: 3.5vh;
-
-}
-
-
-.img2{
-
-    align-self: center;
-    width: 25vh;
-
-}
-
-/*------------------------- FIM LADO ESQUERO ------------------------*/
-
-/*------------------------  LADO DIREITO  ------------------------------*/
-
-.container{
-    margin: 2vh;
-    display:flex;
+   /* background: linear-gradient( #e2e2e2,#a885ff); 
+    background: #13d420; */
+    display: flex;
     align-items: center;
-    width: 55%;
+    justify-content: center;
     flex-direction: column;
-    text-align: center;
+    padding: 0px 40px ;
+    /*teste do form-container 
+    margin-left: 32px; */
+    height: 100%;
 }
 
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+   /* deixa o from do container no lado direito */
+    left: 380px;
+   /*teste do form do container 
+    background: #333; */
+    transition: all 0.6s ease-in-out;
+}
 
-
-.text1 {
-    font-size: 4.3vh;
-    margin-top: 4vh;
+.form-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
     color: aliceblue;
     font-weight: bold;
-}
-
-
+   /* background-color: #333; */
+} 
 /* tirar linha de todos os links */
-    a.link1{
-        margin-top: 1vh;
-        font-size: 4.5vh;
-        display: flex;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 1vh;
-        border: 0.01vh solid transparent;
-        background-color: #93a9e5ab;
-        border-radius: 1vh;
-        color: rgb(237, 237, 238);
-        
-
-    }
-    a.link1:hover {
-        background-color: #7084bbab;
-        transition: 0.2s;
-    }
-
-#singin {
-
-    margin-top: 2vh;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-label {
-    width: auto;
-    text-align: left;
-    color: whitesmoke;
+.form-container a#link1{
+    font-size: 26px;
     font-weight: bold;
-    font-size: 2.5vh;
-    padding-top: 4vh;
-    margin-bottom: 0.6vh;
-
+    padding: 7px;
+    background-color: #93a9e5ab;
+    border-radius: 10px;
+    color: rgb(237, 237, 238);
+    margin-bottom: 20px;
 }
-
-.sing input {
-
-    width: 25vw;
-    padding: 1vw;
-    border-radius: 0.8vw;
-    font-size: 2vw;
-    border: 0.001vw solid;
-    font-weight: bolder;
-
-    
-
-}
-
-.sing input:hover {
-
+.form-container a#link1:hover {
+    background-color: #7084bbab;
     transition: 0.2s;
-
 }
 
-a.esqueci{
+.form-container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    width: 90%;
+    outline: none;
+}
+
+a#forget{
     color: aliceblue;
     text-decoration: none;
-    font-size: 2vh;
-    margin-top: 0.5vw;
-    align-self: baseline;
+    font-size: 15px;
+    margin-top: 0.5px;
+    align-self:baseline;
+    margin-left: 20px;
+
     font-weight: bold;
 }
-a.esqueci:hover{
-    color: #88888a;
+a#forget:hover{
+
+    color: rgb(141, 162, 233);
     transition: 0.2s;
 }
 
 
 button {
-    margin-top: 1vh;
-    padding: 0.8vw 2vw;
-    font-size: 3vh;
-    border-radius: 1vw;
+
+    border-radius: 1px;
     background-color: rgb(141, 162, 233);
-    border: 0.1vw solid ;
     box-shadow:rgb(22, 22, 34);
     box-shadow: 2px 2px 5px #494747;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 30px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    
+   
 }
 
 button:hover {
     background-color: rgb(83, 128, 170);
     transition: 0.2s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
-.button{
-    position: relative;
-    margin-top: 2vh;
-}
 
-label1 {
-    
-    font-weight: bolder;
-    color: aliceblue;
-   
-}
-/*-----------------------------------------*/
-.s {
+
+
+
+/* ------------------- LADO ESQUERDO --------------  */
+
+
+.toggle-container{
     position: absolute;
-    right: 50%;
-    bottom: 2%;
+    width: 48%;
+    height: 100%;
+    overflow: hidden;
+   /* transition: all 0.6s ease-in-out; */
+    border-radius: 0 30px 30px 0; 
+    z-index: 100;
+}
+
+ .toggle{
+    height: 100%;
+    background-image: linear-gradient(360deg, rgb(187, 160, 236), rgb(255, 255, 255));
+    color: #2872A6;
+    position: relative;
+    height: 100%;
+    width: 100%;
+   /* transform: translateX(0);
+    transition: all 0.6s ease-in-out; */
+    padding: 10%;
+        
+} 
+
+.toggle-panel h1#text1{
+
+    margin-top: 30px ;  
+    padding: 10px; 
+    font-size: 40px;
     text-align: center;
-    background-color: #494747;
-    padding-left: 5%;
+    color: #2264a5;
+    
+}
+
+.toggle-panel h1#text2{
+    padding: 5px;    
+    margin-top: 20px;
+    font-size: 25px;
+    text-align: center;
+    color: #1c5b9b;
+    background-color: #93a9e55d;  
+    border-radius: 10px;
+    overflow:-moz-hidden-unscrollable
+    
+}
+
+.toggle-panel p{
+    padding: 1%;
+    margin-top: 35px;
+    text-align: center;
+    color: #136aa8;
+    font-size: 25px;
 
 }
 
-/* CrÃ©ditos aos desenvolvedores */
+.toggle-panel img{
+    width: 200px;
+    margin-left: 40px;
+    
+}
+
+
+/* Créditos aos desenvolvedores */
 
 .footer{
     position: absolute;
