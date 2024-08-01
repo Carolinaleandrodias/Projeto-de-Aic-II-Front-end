@@ -22,6 +22,8 @@
      <img id="furg" src="image/furg.png"> 
         
         <div class="container">
+            <a class="links" id="paracadastro"></a>
+            <a class="links" id="paralogin"></a>
         
             <div class="toggle-container">
                 
@@ -39,37 +41,68 @@
                 </div>
             </div>
 <!------------------------  INICIO DO FORMULÁRIO --------------------------------------->
-        
-            <div class="form-container sing-in">
+                       
+                <!--TELA DE LOGIN-->
+              <div class="form-container sing-in">
                         
-                        <form action="GET">
+                        <form method="get" action="">
                               
                             <h1> Entre na sua conta </h1>
-                            <a  href="#" target="_blank" id="link1" > Criar uma conta nova </a>                            
+                            <a class ="link" href="#paracadastro" id="link1" > Criar uma conta nova </a>                            
                             <input type="text" id="matricula" placeholder="Usuário" required/>
                             <input type="password" id="senha" placeholder="Senha" required/>
-                           <a href="#" id="forget">Esqueci a senha</a>
-                           <a href="agenda.html"><button type="submit" value="submit">ENTRAR</button></a>
+                            <a href="#" id="forget">Esqueci a senha</a>
+                            <a href="agendamento/agenda.html"><button type="submit">ENTRAR</button></a>
 
                         </form>
                 
-            </div>
+            </div>  
+                
+                <!--TELA DE CADASTRO-->
+            <!-- <div id="cadastro">      
+                <form method="post" action="">  
+                    <h1> Cadastro </h1>         
+
+                    <p>
+                        <label for="nome_cad">Nome completo </label>
+                        <input type="text" id="nome_cad" name="nome_cad" placeholder="Nome completo" required/>
+                    </p>
+                    
+                    <p>
+                        <label for="data_cad">Data de nascimento</label>
+                        <input type="date" id="data_cad" name="data_cad" required/>
+                    </p>
+
+                    <p>
+                        <label for="matricula_cad">Matricula</label>
+                        <input type="text" id="matricula_cad" name="matricula_cad" placeholder="Matricula" required/>
+                    </p>
+                    
+                    <p>
+                        <label for="senha_cad">Senha</label>
+                        <input type="password" id="senha_cad" placeholder="Senha" required/>
+                    </p>
+                   
+                   <p>
+                        <input id='button' type="submit" value="CADASTRAR"/>
+                   </p>
+
+                   <p class="link">
+                    <a  href="#paralogin"> Voltar </a>
+                   </p>
+
+                </form>
+        
+            </div>  -->
             
 <!------------------------ FIM DO FORMULÁRIO -------------------------------------------->
         </div>
-        <!--         CRIAÇÃO DE CONTA            
-
-        <input type="text" id="nome" placeholder="Nome" required/>
-        <input type="date" id="birthday" required/>
-        <input type="text" id="matricula" placeholder="Usuário" required/>
-        <input type="password" id="senha" placeholder="Senha" required/>
-        <input type="password" id="senha" placeholder="Senha" required/>
-
-        -->
+   
 
         <!-- Descrição de Desenvolvimento
         <div class="footer">
             <p>Sendo Desenvolvido por Emy & Jeff</p>
        </div>    
         -->
+    </body>
 </html>

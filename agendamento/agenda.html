@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Sala</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Agendamento de Sala</h1>
+        <div>
+            
+            <button id="buttonBefore" onclick="previousWeek()">Semana Anterior</button>
+            
+            <span id="weekLabel"></span>
+
+            <button id="buttonAfter" onclick="nextWeek()">Próxima Semana</button>
+        </div>
+        <div class="grid" id="scheduleGrid"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

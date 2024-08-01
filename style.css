@@ -17,6 +17,11 @@ body {
     height: 100vh;
     /* background: #eabeaf; */
 }
+
+a.links{
+    display: none;
+  }
+
 #furg{
 
     margin: -8% -5% 2% 80%;
@@ -171,6 +176,201 @@ button:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
+/*-------------------- CADASTRO --------------------- */
+#cadastro{
+    position: absolute;
+    top: 0;
+    height: 100%;
+   /* deixa o from do container no lado direito */
+    left: 380px;
+   /*teste do form do container 
+    background: #333; */
+    transition: all 0.6s ease-in-out;
+
+}
+
+#cadastro h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: aliceblue;
+    font-weight: bold;
+   /* background-color: #333; */
+} 
+/* tirar linha de todos os links */
+/* .form-container a#link1{
+    font-size: 26px;
+    font-weight: bold;
+    padding: 7px;
+    background-color: #93a9e5ab;
+    border-radius: 10px;
+    color: rgb(237, 237, 238);
+    margin-bottom: 20px;
+}
+.form-container a#link1:hover {
+    background-color: #7084bbab;
+    transition: 0.2s;
+} */
+
+#cadastro input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    width: 90%;
+    outline: none;
+    
+}
+
+#cadastro a{
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: 0.5px;
+    align-self:baseline;
+    margin-left: 20px;
+
+    font-weight: bold;
+}
+#cadastro a:hover{
+
+    color: rgb(141, 162, 233);
+    transition: 0.2s;
+}
+
+
+#cadastro #button {
+    
+    border-radius: 1px;
+    background-color: rgb(141, 162, 233);
+    box-shadow:rgb(22, 22, 34);
+    box-shadow: 2px 2px 5px #494747;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    padding: 8px 15px 4px 2px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+   
+}
+
+#cadastro #button:hover {
+    background-color: rgb(83, 128, 170);
+    transition: 0.2s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+} 
+
+#cadastro label{
+    color: #eee;
+    font-weight: bold;
+}
+
+/* Mudança de formulário */
+.link{
+    
+  
+    -webkit-border-radius: 0 0  5px 5px;
+    border-radius: 0 0  5px 5px;
+  }
+  .link a,p {
+    
+  
+    -webkit-border-radius: 4px;
+    border-radius: 4px;  
+  
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s  linear;
+  }
+  .link a:hover {
+    color: #39bfd7;
+    background: #f7f7f7;
+    border: 1px solid #4ab3c6;
+  }
+
+ .form-container,
+#cadastro
+{
+
+   -webkit-box-shadow: 5px;
+   border-radius: 5px;
+  
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+#paralogin:target ~ .container .form-container,
+#paracadastro:target ~ .container #cadastro
+{
+  z-index: 2;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+#registro:target ~ .container .form-container,
+#paralogin:target ~ .container #cadastro{
+  -webkit-animation-name: fadeOutLeft;
+  animation-name: fadeOutLeft;
+}
+
+/*fadeInLeft*/
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*fadeOutLeft*/
+@-webkit-keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+} 
+
+
+
 
 
 

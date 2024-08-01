@@ -1,0 +1,91 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display:flex; 
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    margin-top: 10px;
+    
+}
+
+/* .header {
+    font-weight: bold;
+    text-align: center; }*/
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.time {
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.cell {
+    background-color: #e9e9e9;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+/* .cell {
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    
+} */
+
+ .cell.booked {
+    background-color: #ffcccc;
+} 
+/* .cell.booked {
+    background-color: #4caf50;
+    color: #fff;
+    pointer-events: none;
+} */
+/* .cell:hover {
+    background-color: #ddd;
+} */
+
+/* .cell.available {
+    background-color: #ccffcc;
+} */
+
+
+
+
+.container button#buttonBefore{
+    
+    
+    font-size: 20px;
+    border:grey;
+    cursor: pointer;
+}
+
+.container h1{
+    margin-left: 25% ;
+}
