@@ -44,22 +44,23 @@
                        
                 <!--TELA DE LOGIN-->
               <div class="form-container sing-in">
-                        
+                     <div id="entrar">
                         <form method="get" action="">
                               
                             <h1> Entre na sua conta </h1>
-                            <a class ="link" href="#paracadastro" id="link1" > Criar uma conta nova </a>                            
+                            <a class ="link" href="#paracadastro" id="criar" > Criar uma conta nova </a>                            
                             <input type="text" id="matricula" placeholder="Usuário" required/>
                             <input type="password" id="senha" placeholder="Senha" required/>
                             <a href="#" id="forget">Esqueci a senha</a>
                             <a href="agendamento/agenda.html"><button type="submit">ENTRAR</button></a>
 
                         </form>
+                     </div>
                 
             </div>  
                 
                 <!--TELA DE CADASTRO-->
-            <!-- <div id="cadastro">      
+             <div id="cadastro" style="display: none;">      
                 <form method="post" action="">  
                     <h1> Cadastro </h1>         
 
@@ -88,12 +89,12 @@
                    </p>
 
                    <p class="link">
-                    <a  href="#paralogin"> Voltar </a>
+                    <a  href="#paralogin" id="voltar"> Voltar </a>
                    </p>
 
                 </form>
         
-            </div>  -->
+            </div>  
             
 <!------------------------ FIM DO FORMULÁRIO -------------------------------------------->
         </div>
@@ -104,5 +105,20 @@
             <p>Sendo Desenvolvido por Emy & Jeff</p>
        </div>    
         -->
+        <script >
+            
+            var mostrar = 'criar';
+            document.getElementById('criar').addEventListener('click', function() {
+            document.getElementById('entrar').style.display = 'none';
+            document.getElementById('cadastro').style.display = 'block';
+        });
+ 
+             document.getElementById('voltar').addEventListener('click', function() {
+             document.getElementById('cadastro').style.display = 'none';
+             document.getElementById('entrar').style.display = 'block';
+         });
+
+
+    </script>
     </body>
 </html>
