@@ -4,9 +4,8 @@ include 'conexao.php';
     if (isset($_POST['adicionar_sala'])) {
         $nome = $_POST['nome'];
         $descrição = $_POST['descrição'];
-        $capacidade = $_POST['capacidade'];
 
-        $sql = "INSERT INTO salas (nome, descrição, capacidade) VALUES ('$nome', '$descrição', '$capacidade')";
+        $sql = "INSERT INTO salas (nome, descrição) VALUES ('$nome', '$descrição')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Sala adicionada com sucesso!<br>";
