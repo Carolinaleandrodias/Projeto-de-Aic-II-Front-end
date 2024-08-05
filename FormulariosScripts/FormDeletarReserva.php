@@ -10,7 +10,6 @@
         <select id="reserva_id" name="reserva_id" required>
             <?php
             include 'ListarAsSalas.php'; // Reutilizando o script para listar as reservas
-            // Modifique a lógica de listagem conforme necessário para este contexto
             $sql = "SELECT r.id, r.inicio, r.fim, s.nome AS sala_nome, r.usuario 
                     FROM reservas r
                     JOIN salas s ON r.sala_id = s.id";
