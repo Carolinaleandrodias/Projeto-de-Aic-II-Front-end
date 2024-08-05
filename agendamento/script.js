@@ -90,3 +90,50 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSchedule();
 });
 
+
+// TELA DE BASE PARA O BACKEND
+// function getRegister () {
+//     const register = [{
+//         nome: String,
+//         nascimento: Date,
+//         matrícula: Number,
+//         senha: String,
+//     }];
+
+//     return register;
+// }
+
+//  // Adiciona um evento de clique no botão para mostrar o registro
+//  document.getElementById('showRegisterBtn').addEventListener('click', function () {
+//     const register = getRegister();
+//     const registerContainer = document.getElementById('registerContainer');
+//     registerContainer.innerHTML = ''; // Limpa o conteúdo existente
+
+//     register.forEach(entry => {
+//         const entryDiv = document.createElement('div');
+//         entryDiv.classList.add('register-entry');
+//         entryDiv.innerHTML = `
+//             <p>Nome: ${entry.name}</p>
+//             <p>Nascimento: ${entry.nascimento.toDateString()}</p>
+//             <p>Matrícula: ${entry.matricula}</p>
+//             <p>Senha: ${entry.senha}</p>
+//         `;
+//         registerContainer.appendChild(entryDiv);
+//     });
+// });
+
+// // Adiciona um evento para o formulário de cadastro
+// document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Impede o envio padrão do formulário
+
+//     // Aqui você pode adicionar lógica para manipular os dados do formulário
+//     alert('Formulário enviado!'); // Apenas um exemplo
+
+//     // Se desejar exibir o conteúdo do formulário, você pode coletar os dados aqui
+//     // Exemplo:
+//     const nome = document.getElementById('nome_cad').value;
+//     const data = document.getElementById('data_cad').value;
+//     const matricula = document.getElementById('matricula_cad').value;
+//     const senha = document.getElementById('senha_cad').value;
+//     console.log({ nome, data, matricula, senha });
+// });
