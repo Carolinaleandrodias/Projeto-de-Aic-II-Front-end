@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Deletar Reserva</h1>
-    <form action="deletar_reserva.php" method="post">
+    <form action="Deletar_Reserva.php" method="post">
         <label for="reserva_id">Selecione a Reserva:</label><br>
         <select id="reserva_id" name="reserva_id" required>
             <?php
