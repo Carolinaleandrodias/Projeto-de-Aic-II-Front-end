@@ -4,33 +4,45 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include 'conexao.php';
-   // Código para reservar sala (placeholder) e dados dos formulários para os scripts
-if (isset($_POST['reservar_sala'])) {
-    $sala_id = $_POST['sala_id'];
-    $usuario = $_POST['usuario']; // Adicionado campo usuario
-    $dia = $_POST['dia'];
-    $mes = $_POST['mes'];
-    $inicio = $_POST['inicio'];
-    $fim = $_POST['fim'];
-// Aqui que pega o ano que deveria aparecer o formulário
-    $ano = date("Y");
 
-// Força pra concatenar o dia, mês, ano e hora para formar o formato DATETIME pro mysql
-    $inicio_datetime = "$ano-$mes-$dia $inicio:00";
-    $fim_datetime = "$ano-$mes-$dia $fim:00";
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Exibe o conteúdo de $_POST para depuração
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
 
+    if (isset($_POST['reservar_sala'])) {
+        $sala_id = $_POST['sala_id'];
+        $usuario = $_POST['usuario'];
+        $dia = $_POST['dia'];
+        $mes = $_POST['mes'];
+        $inicio = $_POST['inicio'];
+        $fim = $_POST['fim'];
+        
+        $ano = date("Y");
 
-// Insere aqui os dados na tabela reservas
-    $sql = "INSERT INTO reservas (sala_id, usuario, inicio, fim) VALUES ('$sala_id', '$usuario', '$inicio', '$fim')";
+        // Formata as datas e horários de início e fim para o formato DATETIME do MySQL
+        $inicio_datetime = "$ano-$mes-$dia $inicio:00";
+        $fim_datetime = "$ano-$mes-$dia $fim:00";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Sala reservada com sucesso!<br>";
-       
-        // Atualiza disponibilidade da sala
-        $sql_update = "UPDATE salas SET disponivel = FALSE WHERE id = '$sala_id'";
-        $conn->query($sql_update);
+        // Insere os dados na tabela reservas
+        $sql = "INSERT INTO reservas (sala_id, usuario, inicio, fim) VALUES ('$sala_id', '$usuario', '$inicio_datetime', '$fim_datetime')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Sala reservada com sucesso!<br>";
+            
+            // Atualiza a disponibilidade da sala
+            $sql_update = "UPDATE salas SET disponivel = FALSE WHERE id = '$sala_id'";
+            $conn->query($sql_update);
+        } else {
+            echo "Erro: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
+        echo "Botão de submissão não encontrado.";
     }
+} else {
+    echo "Formulário não submetido corretamente.";
 }
+
 $conn->close();
