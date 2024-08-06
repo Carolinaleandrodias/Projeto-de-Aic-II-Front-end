@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'conexao.php';
    // Código para reservar sala (placeholder) e dados dos formulários para os scripts
 if (isset($_POST['reservar_sala'])) {

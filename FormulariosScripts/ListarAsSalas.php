@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Incluindo o arquivo de conexão com o banco de dados
 include 'conexao.php';
 
@@ -29,7 +33,7 @@ if ($result->num_rows > 0) {
             $pavilhao_atual = $pavilhao;
         }
         
-        echo "<li>Sala: " . $row['nome'] . " - Capacidade: " . $row['capacidade'] . " - Disponível: " . ($row['disponivel'] ? 'Sim' : 'Não') . "</li>";
+        echo "<li>Sala: " . $row['nome'] . " - Disponível: " . ($row['disponivel'] ? 'Sim' : 'Não') . "</li>";
     }
     echo "</ul>"; // Fecha a última lista
 } else {
