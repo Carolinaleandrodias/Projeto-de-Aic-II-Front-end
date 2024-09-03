@@ -3,6 +3,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+include 'conexao.php';
+
+// Verificar se o usuário é professor(a)
+if (!isset($_SESSION['id']) || $_SESSION['tipo_usuario'] !== 'professor') {
+
+    echo "Você não tem permissão para acessar esta página.";
+ 
+    exit();
+}
 include 'conexao.php';
 
 if (isset($_POST['deletar_reserva'])) {
@@ -31,5 +41,6 @@ if (isset($_POST['deletar_reserva'])) {
     }
 
     $conn->close();
+} else {
+    echo "ID da reserva não fornecido.";
 }
-

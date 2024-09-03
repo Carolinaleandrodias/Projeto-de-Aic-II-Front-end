@@ -3,10 +3,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Incluindo o arquivo de conexão com o banco de dados
+session_start();
+
+// Verificar se o usuário está logado
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'conexao.php';
 
-//// Consultar salas do banco de dados, ordenadas por pavilhão ou o que der (não faço ideia como vou separar isso ainda)
+// Consultar salas do banco de dados, ordenadas por pavilhão ou o que der (não faço ideia como vou separar isso ainda)
 $sql = "SELECT * FROM salas ORDER BY nome";
 $result = $conn->query($sql);
 
