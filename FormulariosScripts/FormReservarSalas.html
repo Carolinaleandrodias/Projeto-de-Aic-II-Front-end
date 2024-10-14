@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservar Sala</title>
+    <script>
+        // Função para formatar o horário enquanto o usuário digita
+        function formatTimeInput(event) {
+            const input = event.target;
+            let value = input.value;
+
+            // Remove tudo que não é número
+            value = value.replace(/\D/g, '');
+
+            // Adiciona os dois pontos após os dois primeiros dígitos
+            if (value.length > 2) {
+                value = value.slice(0, 2) + ':' + value.slice(2, 4);
+            }
+
+            // Atualiza o valor do input
+            input.value = value;
+
+            // Ajusta o cursor para o final do texto
+            input.setSelectionRange(value.length, value.length);
+        }
+    </script>
+</head>
+<body>
+    <h2>Reservar Sala</h2>
+    <form action="ReservarSala.php" method="post">
+        <label for="sala_id">ID da Sala:</label><br>
+        <input type="number" id="sala_id" name="sala_id" required><br>
+        
+        <label for="usuario">Professor(a):</label><br>
+        <input type="text" id="usuario" name="usuario" required><br>
+
+        <label for="dia">Dia:</label><br>
+        <input type="number" id="dia" name="dia" min="1" max="31" required><br>
+        
+        <label for="mes">Mês:</label><br>
+        <input type="number" id="mes" name="mes" min="1" max="12" required><br>
+        
+        <label for="inicio">Início (HH:MM):</label><br>
+        <input type="text" id="inicio" name="inicio" placeholder="HH:MM" required oninput="formatTimeInput(event)"><br>
+        
+        <label for="fim">Fim (HH:MM):</label><br>
+        <input type="text" id="fim" name="fim" placeholder="HH:MM" required oninput="formatTimeInput(event)"><br>
+        
+        <input type="submit" name="reservar_sala" value="Reservar">
+    </form>
+</body>
+</html>
