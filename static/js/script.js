@@ -3,25 +3,38 @@ const scheduleGrid = document.getElementById('scheduleGrid');
 const weekLabel = document.getElementById('weekLabel');
 
 let currentDate = new Date();
-const weekDays = ['Domingo','Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira','Sabado'];
+const weekDays = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira','Sabado','Domingo'];
 //const rooms = ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4', 'Sala 5'];
 const hours = Array.from({ length: 12 }, (_, i) => `${String(i + 8).padStart(2, '0')}:00 - ${String(i + 9).padStart(2, '0')}:00`);
 
+// function generateWeekDates(date) {
+//     // Cria uma nova data baseada na data fornecida
+//     const startOfWeek = new Date(date);
+    
+//     // Semana começa no domingo
+//     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    
+//     // Cria um array de 7 elementos para os dias úteis (segunda a domingo)
+//     return Array.from({ length: 7 }, (_, i) => {
+//         if (i !== 0) {
+//             startOfWeek.setDate(startOfWeek.getDate() +1);
+//         }
+//         return new Date(startOfWeek);
+//     });
+// }
 function generateWeekDates(date) {
-    // Cria uma nova data baseada na data fornecida
+    // Início da semana baseado na data passada
     const startOfWeek = new Date(date);
-    
-    // Semana começa no domingo
     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-    
-    // Cria um array de 7 elementos para os dias úteis (segunda a domingo)
+
+    // Gera uma nova data para cada dia da semana, evitando mutação
     return Array.from({ length: 7 }, (_, i) => {
-        if (i !== 0) {
-            startOfWeek.setDate(startOfWeek.getDate() +1);
-        }
-        return new Date(startOfWeek);
+        const day = new Date(startOfWeek);
+        day.setDate(startOfWeek.getDate() + i);
+        return day;
     });
 }
+
 // function generateWeekDates(date) {
 //     const startOfWeek = new Date(date);
 //     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
