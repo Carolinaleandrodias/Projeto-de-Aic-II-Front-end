@@ -137,3 +137,33 @@ document.addEventListener('DOMContentLoaded', () => {
 //     const senha = document.getElementById('senha_cad').value;
 //     console.log({ nome, data, matricula, senha });
 // });
+
+function toggleBooking(cell) {
+    if (cell.classList.contains('available')) {
+        cell.classList.remove('available');
+        cell.classList.add('booked');
+    } else {
+        cell.classList.remove('booked');
+        cell.classList.add('available');
+    }
+    showNotification(`Reserva para ${cell.dataset.date} às ${cell.dataset.hour}`);
+}
+
+function showNotification(text) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    notificationText.innerText = text;
+    notification.style.display = 'block';
+}
+
+function closeNotification() {
+    const notification = document.getElementById('notification');
+    notification.style.display = 'none';
+}
+
+function previousWeek() {
+    currentDate.setDate(currentDate.getDate() - 7);
+    renderSchedule();
+}
+
+///////
