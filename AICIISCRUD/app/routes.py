@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import sql_db as db, Sala
+from .models import models_sql_db as db, Sala
 from flask import flash
 main = Blueprint('main', __name__)
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from .models import db, Reserva
+from .models import models_sql_db as db, Reserva
 
 reservas_bp = Blueprint('reservas', __name__)
 

@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Blueprint, Flask
+from flask import Blueprint
 from .routes import main
 from .reservas_routes import reservas_bp
 from flask_sqlalchemy import SQLAlchemy
@@ -31,6 +31,7 @@ def create_app():
         raise AppCreationError(f"Failed to create app: {e}") from e
 
     return app
+
 
 class AppCreationError(Exception):
     pass
