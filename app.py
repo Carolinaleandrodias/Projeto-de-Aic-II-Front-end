@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 @app.route('/auth', methods = ['GET','POST'])
 def auth():
+    print('request.form',request.form)
     if request.method == 'POST':
         if 'login' in request.form:
             matricula = request.form['matricula']
@@ -12,7 +13,7 @@ def auth():
             print(f"Senha: {senha}")
             return redirect(url_for('agend'))
         
-        elif 'request' in request.form:
+        elif 'register' in request.form:
             nome_cad = request.form['nome_cad']
             data_cad = request.form['data_cad']
             email_cad = request.form['email_cad']

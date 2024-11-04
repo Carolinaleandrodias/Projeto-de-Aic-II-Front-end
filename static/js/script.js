@@ -3,7 +3,7 @@ const scheduleGrid = document.getElementById('scheduleGrid');
 const weekLabel = document.getElementById('weekLabel');
 
 let currentDate = new Date();
-const weekDays = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira','Sabado','Domingo'];
+const weekDays = ['Domingo','Segunda-feira' ,'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira','Sabado'];
 //const rooms = ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4', 'Sala 5'];
 const hours = Array.from({ length: 12 }, (_, i) => `${String(i + 8).padStart(2, '0')}:00 - ${String(i + 9).padStart(2, '0')}:00`);
 
