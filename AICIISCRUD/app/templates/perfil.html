@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ usuario.nome }}!</h1>
+    <p>Email: {{ usuario.email }}</p>
+    <p>Tipo de usuário: {{ usuario.tipo }}</p>
+    <a href="{{ url_for('main.logout') }}">Sair</a>
+</body>
+</html>
