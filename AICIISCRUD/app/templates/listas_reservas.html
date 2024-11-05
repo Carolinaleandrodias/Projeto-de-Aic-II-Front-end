@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas Feitas</title>
+</head>
+<body>
+    <h1>Reservas Feitas</h1>
+    <ul>
+        {% for reserva in reservas %}
+            <li>
+                ID: {{ reserva.id }}<br>
+                Sala: {{ reserva.sala.nome }}<br>
+                Usuário: {{ reserva.usuario }}<br>
+                Início: {{ reserva.inicio }}<br>
+                Fim: {{ reserva.fim }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+</body>
+</html>
