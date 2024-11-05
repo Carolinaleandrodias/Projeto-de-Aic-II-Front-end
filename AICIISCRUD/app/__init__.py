@@ -1,31 +1,37 @@
 from flask import Flask
-from flask_login import LoginManager
-from .routes import main as main_blueprint
-from .config import Config
-from .models import db, Usuario 
-from .reservas import reservas as reservas_blueprint
-from .salas import salas as salas_blueprint
-from .usuarios import usuarios as usuarios_blueprint
+from flask import Blueprint
+from .routes import main
+from .reservas_routes import reservas_bp
+from flask_sqlalchemy import SQLAlchemy
+from .database import sql_db
 
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
-    app.config['SECRET_KEY'] = "212310"
 
-    # Inicializar banco de dados
-    db.init_app(app)
-    login_manager = LoginManager(app)
-    login_manager.login_view = 'usuarios.login'  # Redireciona usuários não logados para a rota de login
-    @login_manager.user_loader
-    def load_user(user_id):
-        return Usuario.query.get(int(user_id))
-    
-    
-    # Registrar blueprints
-    app.register_blueprint(main_blueprint)
-    app.register_blueprint(usuarios_blueprint, url_prefix='/usuarios')
-    app.register_blueprint(reservas_blueprint, url_prefix='/reservas')
-    app.register_blueprint(salas_blueprint, url_prefix='/salas')  
+    # Configurações do banco de dados e outras configurações aqui
+    try:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        sql_db.init_app(app)
+
+        # Registrando blueprints
+        if isinstance(main, Blueprint):
+            app.register_blueprint(main)
+        else:
+            raise ValueError("Blueprint 'main' is not a valid Blueprint instance")
+
+        if isinstance(reservas_bp, Blueprint):
+            app.register_blueprint(reservas_bp, url_prefix='/reservas')
+        else:
+            raise ValueError("Blueprint 'reservas_bp' is not a valid Blueprint instance")
+
+    except Exception as e:
+        # Log the exception or handle it accordingly
+        print(f"An error occurred during app creation: {e}")
+        raise AppCreationError(f"Failed to create app: {e}") from e
 
     return app
+
+
+class AppCreationError(Exception):
+    pass
