@@ -18,3 +18,4 @@ class Usuario(db.Model):
     nome = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     tipo = db.Column(db.String(20), nullable=False)  # 'professor' ou 'aluno'
+    senha = db.Column(db.String(128), nullable = False) 

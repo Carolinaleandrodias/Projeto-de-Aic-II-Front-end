@@ -9,6 +9,8 @@ from . import db
 usuarios = Blueprint('usuarios', __name__)
 
 # Modelo de Usuário
+#suario se refere ao blueprint e à rota de usuários, lidar com o processo de login, perfil e autenticação do usuário
+#Gerencia as interações com a interface da aplicação e controlar o acesso das rotas.
 class Usuario(UserMixin, db.Model):
     __tablename__ = 'usuarios'
     

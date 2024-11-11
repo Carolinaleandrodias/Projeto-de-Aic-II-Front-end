@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from .models import Sala
 from .forms import SalaForm
-from .reservas import db
+from .models import db
 
 salas = Blueprint('salas', __name__)
 
