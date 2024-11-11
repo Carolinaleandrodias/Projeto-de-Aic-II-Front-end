@@ -71,11 +71,25 @@ Rotas:
 forms.py
  Define três formulários diferentes usando a biblioteca Flask-WTF, que permite gerenciar e validar formulários HTML de maneira mais eficiente no Flask.
 
-1. ReservaForm
+> ReservaForm
 Este formulário é utilizado para criar reservas de sala, coletando dados essenciais sobre a reserva, como:
 
 sala_id: Campo de seleção (SelectField) para o ID da sala, com validação obrigatória. Esse campo recebe as opções de salas disponíveis.
 inicio: Campo de data e hora (DateTimeField) para o horário de início da reserva, com validação obrigatória.
 fim: Campo de data e hora (DateTimeField) para o horário de término da reserva, também obrigatório.
 Validação personalizada (validate_fim): Impede que o horário de término (fim) seja anterior ou igual ao horário de início (inicio), garantindo que a reserva tenha uma duração válida.
+submit: Botão para enviar o formulário.
+
+> LoginForm
+Este formulário é usado na tela de login dos usuários e possui:
+
+email: Campo para o e-mail do usuário, validado para garantir que o formato seja um e-mail válido e que o campo esteja preenchido.
+senha: Campo para a senha, também obrigatório.
+submit: Botão para enviar o formulário.
+
+> SalaForm
+Este formulário é utilizado para adicionar ou editar uma sala no sistema e possui:
+
+numero: Campo para o número da sala, com validação obrigatória.
+capacidade: Campo para a capacidade da sala (quantidade de pessoas que cabem na sala), também obrigatório.
 submit: Botão para enviar o formulário.
