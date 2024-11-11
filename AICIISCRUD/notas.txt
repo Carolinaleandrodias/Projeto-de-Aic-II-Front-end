@@ -8,7 +8,25 @@ Elas permitem definir rotas, formulários, configurações e outras funcionalida
 
 /// ARQUIVOS ATÉ AGORA DENTRO DO APP ///
 
-models.py: Este arquivo define os modelos de dados para o banco de dados, utilizando o SQLAlchemy do Flask. Esses modelos correspondem às tabelas do banco de dados e definem as propriedades dos objetos e como eles serão armazenados e manipulados.
+
+init.py 
+
+> inicializar a aplicação e configurar o ambiente para que os outros módulos e componentes funcionem de maneira integrada
+> Arquivos de Login
+LoginManager: Configura o gerenciamento de login e autenticação de usuários através do Flask-Login.
+login_manager.login_view: Define a rota de login (usuarios.login), que é para onde usuários não autenticados serão redirecionados se tentarem acessar uma rota protegida.
+load_user: Função usada para carregar os dados de um usuário a partir de seu user_id. Isso permite que o sistema de login saiba qual usuário está atualmente autenticado.
+
+>Blueprints 
+
+Cada blueprint é associada a um "prefixo de URL" para acessar rotas específicas, como:
+/usuarios: Gerenciamento de usuários (login, perfil)
+/reservas: Funcionalidades de reserva
+/salas: Gerenciamento de salas
+
+
+models.py:
+Define os modelos de dados para o banco de dados, utilizando o SQLAlchemy do Flask. Esses modelos correspondem às tabelas do banco de dados e definem as propriedades dos objetos e como eles serão armazenados e manipulados.
 
 Componentes:
 Reserva: Representa uma reserva de sala. Contém informações como a sala reservada, o usuário que fez a reserva, e o horário de início e fim da reserva.
@@ -71,25 +89,11 @@ Rotas:
 forms.py
  Define três formulários diferentes usando a biblioteca Flask-WTF, que permite gerenciar e validar formulários HTML de maneira mais eficiente no Flask.
 
-> ReservaForm
+1. ReservaForm
 Este formulário é utilizado para criar reservas de sala, coletando dados essenciais sobre a reserva, como:
 
 sala_id: Campo de seleção (SelectField) para o ID da sala, com validação obrigatória. Esse campo recebe as opções de salas disponíveis.
 inicio: Campo de data e hora (DateTimeField) para o horário de início da reserva, com validação obrigatória.
 fim: Campo de data e hora (DateTimeField) para o horário de término da reserva, também obrigatório.
 Validação personalizada (validate_fim): Impede que o horário de término (fim) seja anterior ou igual ao horário de início (inicio), garantindo que a reserva tenha uma duração válida.
-submit: Botão para enviar o formulário.
-
-> LoginForm
-Este formulário é usado na tela de login dos usuários e possui:
-
-email: Campo para o e-mail do usuário, validado para garantir que o formato seja um e-mail válido e que o campo esteja preenchido.
-senha: Campo para a senha, também obrigatório.
-submit: Botão para enviar o formulário.
-
-> SalaForm
-Este formulário é utilizado para adicionar ou editar uma sala no sistema e possui:
-
-numero: Campo para o número da sala, com validação obrigatória.
-capacidade: Campo para a capacidade da sala (quantidade de pessoas que cabem na sala), também obrigatório.
 submit: Botão para enviar o formulário.
