@@ -1,7 +1,23 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, IntegerField, SelectField, DateTimeField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, Length, ValidationError
 from datetime import datetime
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    submit = SubmitField('Entrar')
+
+class RegisterForm(FlaskForm):
+    nome = StringField('Nome Completo', validators=[DataRequired()])
+    email = StringField('E-mail', validators=[DataRequired(), Email()])
+    matricula = IntegerField('Matrícula', validators=[DataRequired()])
+    senha = PasswordField('Senha', validators=[DataRequired(), Length(min=8)])
+
+class SalaForm(FlaskForm):
+    numero = StringField('Número da Sala', validators=[DataRequired()])
+    capacidade = IntegerField('Capacidade', validators=[DataRequired()])
+    submit = SubmitField('Adicionar Sala')
 
 class ReservaForm(FlaskForm):
     sala_id = SelectField('Sala', coerce=int, validators=[DataRequired()])
@@ -12,13 +28,3 @@ class ReservaForm(FlaskForm):
     def validate_fim(self, field):
         if field.data <= self.inicio.data:
             raise ValidationError('O horário de fim deve ser posterior ao horário de início.')
-
-class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    senha = PasswordField('Senha', validators=[DataRequired()])
-    submit = SubmitField('Entrar')
-
-class SalaForm(FlaskForm):
-    numero = StringField('Número da Sala', validators=[DataRequired()])
-    capacidade = IntegerField('Capacidade', validators=[DataRequired()])
-    submit = SubmitField('Adicionar Sala')
