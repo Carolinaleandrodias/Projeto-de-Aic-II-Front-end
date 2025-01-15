@@ -2,11 +2,8 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from .routes import main as main_blueprint
-from .config import Config
 from .models import db, Usuario 
-from .reservas import reservas as reservas_blueprint
-from .salas import salas as salas_blueprint
+from .usuarios import main as main_blueprint
 from .usuarios import usuarios as usuarios_blueprint
 #set FLASK_APP="__init__:create_app"
 #flask run
@@ -15,7 +12,7 @@ from .usuarios import usuarios as usuarios_blueprint
 def create_app():
     app = Flask(__name__, static_folder='static')
     app.debug = True
-    app.config.from_object(Config)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
     app.config['SECRET_KEY'] = "212310"
     app.config['SQLALCHEMY_ECHO'] = True  # Da o log das queries no console
 
@@ -34,7 +31,5 @@ def create_app():
     # Registrar blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(usuarios_blueprint, url_prefix='/usuarios')
-    app.register_blueprint(reservas_blueprint, url_prefix='/reservas')
-    app.register_blueprint(salas_blueprint, url_prefix='/salas')  
 
     return app

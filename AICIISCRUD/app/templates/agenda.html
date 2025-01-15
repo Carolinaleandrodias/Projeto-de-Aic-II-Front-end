@@ -22,6 +22,54 @@
     <div class="logo">
         <!-- <img class="logo__C3" src="../image/c3logo.png" alt=""> -->
     </div>
+    <script>
+        const userEmail = "{{ current_user.email }}";  // Get the logged-in user's email
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('scheduleGrid');
+            for (let i = 0; i < 100; i++) {  // Example: 100 tiles
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                tile.dataset.bookedBy = '';  // Initially not booked
+                tile.addEventListener('click', function() {
+                    if (tile.dataset.bookedBy === '') {
+                        tile.style.backgroundColor = 'orange';
+                        tile.innerText = userEmail;
+                        tile.dataset.bookedBy = userEmail;
+                        // Send booking info to the server
+                        bookTile(i, userEmail);
+                    } else if (tile.dataset.bookedBy === userEmail) {
+                        tile.style.backgroundColor = '';
+                        tile.innerText = '';
+                        tile.dataset.bookedBy = '';
+                        // Send unbooking info to the server
+                        unbookTile(i);
+                    }
+                });
+                grid.appendChild(tile);
+            }
+        });
+
+        function bookTile(tileIndex, email) {
+            fetch('/book_tile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tileIndex, email })
+            });
+        }
+
+        function unbookTile(tileIndex) {
+            fetch('/unbook_tile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tileIndex })
+            });
+        }
+    </script>
     <script src="{{url_for('static', filename = 'js/script.js')}}"></script>
 </body>
 </html>

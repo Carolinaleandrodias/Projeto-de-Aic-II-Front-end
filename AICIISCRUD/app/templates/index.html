@@ -1,125 +1,25 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <!--Link das fontes tirado do google fonts. fonte: League Spartan-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-        <!--Fontes sempre antes do Style!-->
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>site de agendamento c3</title>
-        <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
-        {% include "header.html" %} 
-    </head>
-
-    <body>   
-     <img id="furg" src="{{url_for('static', filename = 'image/furg.png')}}"> 
-        
-        <div class="container">
-            <a class="links" id="paracadastro"></a>
-            <a class="links" id="paralogin"></a>
-        
-            <div class="toggle-container">
-                
-                <div class="toggle"> 
-                       <!--<img id="img1" src="unnamed.png">-->
-                
-                    <div class = "toggle-panel toggle-left">
-                         
-                        <h1 id="text1">Olá, seja <br/> bem-vindo!</h1>
-                        <h1 id="text2">Sistema de agendamento de salas</h1>
-                        <p>Acesse a sua conta agora!</p>
-                        <img src="{{url_for('static', filename = 'image/agendamento-01.png')}}">
-
-                    </div>
-                </div>
-            </div>
-<!------------------------  INICIO DO FORMULÁRIO --------------------------------------->
-                       
-                <!--TELA DE LOGIN-->
-              <div class="form-container sing-in">
-                     <div id="entrar">
-                        <form method="POST" action="{{ url_for('usuarios.login') }}" id="login">
-                            <h1>Entre na sua conta</h1>
-                            <button class="link" id="criar">Criar uma conta nova</button>
-                            <input type="text" id="matricula" name="matricula" placeholder="Usuário" required/>
-                            <input type="password" id="senha" name="senha" placeholder="Senha" required/>
-                            <a href="#" id="forget">Esqueci a senha</a>
-                            <button type="submit" name="login">ENTRAR</button>
-                        </form>
-                        
-
-                        </form>
-                     </div>
-                
-            </div>  
-                
-                <!--TELA DE CADASTRO-->
-                <div id="cadastro" style="display: none;">      
-                    <form method="POST" action="{{ url_for('usuarios.register') }}" id="register">  
-                        <h1> Cadastro </h1>         
-                
-                        <p>
-                            <label for="nome_cad">Nome completo </label>
-                            <input type="text" id="nome_cad" name="nome" placeholder="Nome completo" required/>
-                        </p>
-                
-                        <p>
-                            <label for="data_cad">Data de nascimento</label>
-                            <input type="date" id="data_cad" name="data_nascimento" required/>
-                        </p>
-                
-                        <p>
-                            <label for="email_cad">E-mail </label>
-                            <input type="email" id="email_cad" name="email" placeholder="E-mail" required/>
-                        </p>
-                
-                        <p>
-                            <label for="matricula_cad">Matrícula</label>
-                            <input type="text" id="matricula_cad" name="matricula" placeholder="Matrícula" required/>
-                        </p>
-                        
-                        <p>
-                            <label for="senha_cad">Senha</label>
-                            <input type="password" id="senha_cad" name="senha" placeholder="Senha" required/>
-                        </p>
-                
-                        <p>
-                            <button id='button' type="submit" name='register'> Cadastrar </button>
-                        </p>
-                
-                        <p class="link">
-                            <button id="voltar"> Voltar </button>
-                        </p>
-                    </form>
-                </div>
-            
-<!------------------------ FIM DO FORMULÁRIO -------------------------------------------->
+<div class="toggle-container">
+    <div class="toggle">
+        <div class="toggle-panel toggle-left">
+            <h1 id="text1">Olá, seja <br/> bem-vindo!</h1>
+            <h1 id="text2">Sistema de agendamento de salas</h1>
+            <p>Acesse a sua conta agora!</p>
+            <form action="{{ url_for('usuarios.login') }}" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <button type="submit">Login</button>
+            </form>
         </div>
-   
-
-        <!-- Descrição de Desenvolvimento
-        <div class="footer">
-            <p> Sendo Desenvolvido por Emy & Jeff</p>
-       </div>    
-        -->
-        <script >
-            
-            //var mostrar = 'criar';
-            document.getElementById('criar').addEventListener('click', () => {
-            document.getElementById('entrar').style.display = 'none';
-            document.getElementById('cadastro').style.display = 'block';
-        });
- 
-             document.getElementById('voltar').addEventListener('click', () => {
-             document.getElementById('cadastro').style.display = 'none';
-             document.getElementById('entrar').style.display = 'block';
-         });
-
-
-    </script>
-    </body>
-</html>
+        <div class="toggle-panel toggle-right">
+            <h1 id="text3">Crie sua conta</h1>
+            <form action="{{ url_for('usuarios.register') }}" method="POST">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="matricula" placeholder="Matricula" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <input type="password" name="confirm_senha" placeholder="Confirme a Senha" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+</div>
