@@ -111,6 +111,9 @@ a.links{
     
     /* border: solid 1px; */ 
 }
+.container.register-mode {
+    min-height: 680px;
+}
 /*
 .container p{
     font-size: 14px;
@@ -221,7 +224,6 @@ a#forget:hover{
     transition: 0.2s;
 }
 
-
 button {
 
     border-radius: 1px;
@@ -319,12 +321,14 @@ button:hover {
     cursor: pointer;
     color: #fff;
     font-size: 20px;
-    padding: 8px 15px 4px 2px;
+    padding: 8px 8px 8px 8px;
     border: 1px solid transparent;
     border-radius: 8px;
     font-weight: bold;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
    
 }
 
@@ -334,6 +338,37 @@ button:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 } 
+
+/* Estilizar o select com bordas arredondadas e aparência agradável */
+#user_type {
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f8f9fa; /* Cor de fundo */
+    border: 1px solid #ccc; /* Cor da borda */
+    padding: 10px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    width: 100%; /* Largura total */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    appearance: none; /* Remove a aparência padrão do navegador */
+}
+
+/* Adicionar seta personalizada para o select */
+#user_type::after {
+    content: '▼'; /* Seta para baixo */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Ignorar eventos de clique */
+    color: #333; /* Cor da seta */
+}
+
+/* Ajustar o contêiner do select para posicionar a seta corretamente */
+.select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
 
 #cadastro label{
     color: #eee;

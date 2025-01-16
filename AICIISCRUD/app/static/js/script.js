@@ -1,120 +1,118 @@
+const times = [
+    "07:45", "08:35", "09:45", "10:35", "11:25", "13:30", "14:20", "15:10",
+    "16:20", "17:10", "18:00", "18:50", "19:40", "20:40", "21:30", "22:20"
+];
+let currentWeekStart = new Date();  // Start with the current date
+currentWeekStart.setDate(currentWeekStart.getDate() - currentWeekStart.getDay() + 1);  // Adjust to the start of the week (Monday)
 
-const scheduleGrid = document.getElementById('scheduleGrid');
-const weekLabel = document.getElementById('weekLabel');
+document.addEventListener('DOMContentLoaded', function() {
+    updateWeekLabel();
+    loadWeekBookings();
 
-let currentDate = new Date();
-const weekDays = ['Domingo','Segunda-feira' ,'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira','Sabado'];
-//const rooms = ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4', 'Sala 5'];
-const hours = Array.from({ length: 12 }, (_, i) => `${String(i + 8).padStart(2, '0')}:00 - ${String(i + 9).padStart(2, '0')}:00`);
+    const grid = document.getElementById('scheduleGrid');
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-// function generateWeekDates(date) {
-//     // Cria uma nova data baseada na data fornecida
-//     const startOfWeek = new Date(date);
-    
-//     // Semana começa no domingo
-//     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-    
-//     // Cria um array de 7 elementos para os dias úteis (segunda a domingo)
-//     return Array.from({ length: 7 }, (_, i) => {
-//         if (i !== 0) {
-//             startOfWeek.setDate(startOfWeek.getDate() +1);
-//         }
-//         return new Date(startOfWeek);
-//     });
-// }
-function generateWeekDates(date) {
-    // Início da semana baseado na data passada
-    const startOfWeek = new Date(date);
-    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    // Create the grid with time slots and tiles
+    times.forEach(time => {
+        const timeHeader = document.createElement('div');
+        timeHeader.className = 'header';
+        timeHeader.textContent = time;
+        grid.appendChild(timeHeader);
 
-    // Gera uma nova data para cada dia da semana, evitando mutação
-    return Array.from({ length: 7 }, (_, i) => {
-        const day = new Date(startOfWeek);
-        day.setDate(startOfWeek.getDate() + i);
-        return day;
-    });
-}
+        days.forEach(day => {
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            tile.dataset.bookings = JSON.stringify([]);  // Initially no bookings
+            tile.dataset.slot = times.indexOf(time);
+            tile.dataset.day = day;
+            tile.addEventListener('click', function() {
+                const deleteBooking = document.getElementById('deleteBooking').checked;
+                let bookings = JSON.parse(tile.dataset.bookings);
+                const userBookings = bookings.filter(booking => booking.email === userEmail);
 
-// function generateWeekDates(date) {
-//     const startOfWeek = new Date(date);
-//     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-//     return Array.from({ length: 7 }, (_, i) => new Date(startOfWeek.setDate(startOfWeek.getDate() + (i === 0 ? 0 : 1))));
-// }
-
-function renderSchedule() {
-    scheduleGrid.innerHTML = '';
-    const weekDates = generateWeekDates(currentDate);
-
-    // Cabeçalho - header
-    scheduleGrid.appendChild(createElement('div', 'header', 'Horários'));
-    weekDates.forEach(date => {
-        scheduleGrid.appendChild(createElement('div', 'header', `${weekDays[date.getDay()]} \n ${date.getUTCDate()}`));
-    });
-
-    // Marcação das cells
-    hours.forEach(hour => {
-        scheduleGrid.appendChild(createElement('div', 'time', hour));
-        weekDates.forEach(date => {
-                const cell = createElement('div', 'cell available', '');
-                cell.dataset.date = date.toISOString();
-                cell.dataset.hour = hour;
-                cell.onclick = () => toggleBooking(cell);
-                scheduleGrid.appendChild(cell);
-            
+                if (deleteBooking) {
+                    if (userBookings.length > 0) {
+                        bookings = bookings.filter(booking => booking.email !== userEmail);
+                        tile.style.backgroundColor = bookings.length ? 'orange' : '';
+                        tile.innerHTML = bookings.length > 1 ? `${bookings.length} bookings` : bookings.length ? `<div>${bookings[0].email}</div><div>${bookings[0].room}</div>` : '';
+                        tile.dataset.bookings = JSON.stringify(bookings);
+                        // Send unbooking info to the server for each user booking
+                        userBookings.forEach(booking => unbookTile(times.indexOf(time), day, booking.room));
+                    }
+                } else {
+                    const room = document.getElementById('roomSelect').value;
+                    const roomAlreadyBooked = bookings.find(booking => booking.room === room);
+                    if (!roomAlreadyBooked) {
+                        bookings.push({ email: userEmail, room: room });
+                        tile.style.backgroundColor = 'orange';
+                        tile.innerHTML = bookings.length > 1 ? `${bookings.length} bookings` : `<div>${userEmail}</div><div>${room}</div>`;
+                        tile.dataset.bookings = JSON.stringify(bookings);
+                        // Send booking info to the server
+                        bookTile(times.indexOf(time), day, room, userEmail);
+                    }
+                }
+            });
+            grid.appendChild(tile);
         });
     });
+});
 
-    updateWeekLabel(); 
+function updateWeekLabel() {
+    const weekLabel = document.getElementById('weekLabel');
+    const endOfWeek = new Date(currentWeekStart);
+    endOfWeek.setDate(endOfWeek.getDate() + 5);  // Saturday
+    weekLabel.textContent = `${currentWeekStart.toLocaleDateString()} - ${endOfWeek.toLocaleDateString()}`;
 }
 
-function createElement(tag, className, text) {
-    const element = document.createElement(tag);
-    element.className = className;
-    element.innerText = text;
-    return element;
+function loadWeekBookings() {
+    fetch(`/usuarios/get_bookings?start=${currentWeekStart.toISOString().split('T')[0]}`)
+        .then(response => response.json())
+        .then(data => {
+            const grid = document.getElementById('scheduleGrid');
+            grid.querySelectorAll('.tile').forEach(tile => {
+                tile.style.backgroundColor = '';
+                tile.innerHTML = '';
+                tile.dataset.bookings = JSON.stringify([]);
+            });
+            data.bookings.forEach(booking => {
+                const tile = grid.querySelector(`.tile[data-slot="${booking.slot}"][data-day="${booking.day}"]`);
+                let bookings = JSON.parse(tile.dataset.bookings);
+                bookings.push({ email: booking.email, room: booking.room });
+                tile.style.backgroundColor = 'orange';
+                tile.innerHTML = bookings.length > 1 ? `${bookings.length} bookings` : `<div>${booking.email}</div><div>${booking.room}</div>`;
+                tile.dataset.bookings = JSON.stringify(bookings);
+            });
+        });
 }
 
-function toggleBooking(cell) {
-    if (cell.classList.contains('available')) {
-        cell.classList.remove('available');
-        cell.classList.add('booked');
-    } else {
-        cell.classList.remove('booked');
-        cell.classList.add('available');
-    }
+function bookTile(slot, day, room, email) {
+    fetch('/usuarios/book_tile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ slot, day, room, email, weekStart: currentWeekStart.toISOString().split('T')[0] })
+    }).then(() => loadWeekBookings());
+}
+
+function unbookTile(slot, day, room) {
+    fetch('/usuarios/unbook_tile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ slot, day, room, weekStart: currentWeekStart.toISOString().split('T')[0] })
+    }).then(() => loadWeekBookings());
 }
 
 function previousWeek() {
-    currentDate.setDate(currentDate.getDate() - 7);
-    renderSchedule();
+    currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+    updateWeekLabel();
+    loadWeekBookings();
 }
 
 function nextWeek() {
-    currentDate.setDate(currentDate.getDate() + 7);
-    renderSchedule();
+    currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+    updateWeekLabel();
+    loadWeekBookings();
 }
-
-function updateWeekLabel() {
-    const weekDates = generateWeekDates(currentDate);
-    weekLabel.innerText = `Semana de ${weekDates[0].toLocaleDateString()} a ${weekDates[6].toLocaleDateString()}`;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderSchedule();
-});
-
-/* header start */
-
-const openButton = document.querySelector("#openMenu");
- 
-const dialog = document.querySelector("dialog");
-
-openButton.addEventListener("click", () => {
-    dialog.showModal();
-});
- 
-dialog.addEventListener("click", ({ target: dialog }) => {
-    if (dialog.nodeName === "DIALOG") {
-        dialog.close("dismiss");
-    }
-});
