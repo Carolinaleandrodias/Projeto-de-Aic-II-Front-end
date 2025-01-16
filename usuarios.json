@@ -1,0 +1,21 @@
+[
+    {
+        "nome": "jeff",
+        "data": "1997-09-17",
+        "email": "jeruchiha1@gmail.com",
+        "matricula": "119844",
+        "senha": "1234"
+    },
+    {
+        "matricula": "119847",
+        "senha": "1234"
+    },
+    {
+        "matricula": "119849",
+        "senha": "1234"
+    },
+    {
+        "matricula": "mayara",
+        "senha": "1234"
+    }
+]

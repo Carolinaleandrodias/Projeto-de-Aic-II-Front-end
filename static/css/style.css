@@ -47,6 +47,15 @@ a.links{
     
     /* border: solid 1px; */ 
 }
+.flashed_alerta{
+    color: red;
+    align-self: auto;
+    font-size: large;
+    margin-bottom: 30px;
+    position: relative;
+    
+    
+}
 /*
 .container p{
     font-size: 14px;

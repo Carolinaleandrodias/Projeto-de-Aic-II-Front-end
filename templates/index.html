@@ -18,7 +18,13 @@
     </head>
 
     <body>
-        
+    {% set menssage = get_flashed_messages () %}
+    {%if menssage %}
+        <div class="flashed_alerta">
+            {{menssage[0]}}
+        </div>
+    {% endif %}
+
      <img id="furg" src="{{url_for('static', filename = 'image/furg.png')}}"> 
         
         <div class="container">
@@ -62,32 +68,32 @@
                 
                 <!--TELA DE CADASTRO-->
              <div id="cadastro" style="display: none;">      
-                <form method="POST" action="{{ url_for('auth') }}" id="register">  
+                <form method="POST" action="{{ url_for('auth') }}">  
                     <h1> Cadastro </h1>         
 
                     <p>
-                        <label for="nome_cad">Nome completo </label>
-                        <input type="text" id="nome_cad" name="nome_cad" placeholder="Nome completo" required/>
+                        <label for="nome">Nome completo </label>
+                        <input type="text" id="nome_cad" name="nome" placeholder="Nome completo" required/>
                     </p>
                     
                     <p>
-                        <label for="data_cad">Data de nascimento</label>
-                        <input type="date" id="data_cad" name="data_cad" required/>
+                        <label for="data">Data de nascimento</label>
+                        <input type="date" id="data_cad" name="data" required/>
                     </p>
 
                     <p>
-                        <label for="email_cad">E-mail </label>
-                        <input type="text" id="email_cad" name="email_cad" placeholder="E-mail" required/>
+                        <label for="email">E-mail </label>
+                        <input type="text" id="email_cad" name="email" placeholder="E-mail" required/>
                     </p>
 
                     <p>
-                        <label for="matricula_cad">Matricula</label>
-                        <input type="text" id="matricula_cad" name="matricula_cad" placeholder="Matricula" required/>
+                        <label for="matricula">Matricula</label>
+                        <input type="text" id="matricula_cad" name="matricula" placeholder="Matricula" required/>
                     </p>
                     
                     <p>
-                        <label for="senha_cad">Senha</label>
-                        <input type="text" id="senha_cad" name="senha_cad" placeholder="Senha" required/>
+                        <label for="senha">Senha</label>
+                        <input type="text" id="senha_cad" name="senha" placeholder="Senha" required/>
                     </p>
 
                     <!-- <p>
@@ -123,13 +129,12 @@
             document.getElementById('entrar').style.display = 'none';
             document.getElementById('cadastro').style.display = 'block';
         });
- 
+
              document.getElementById('voltar').addEventListener('click', () => {
              document.getElementById('cadastro').style.display = 'none';
              document.getElementById('entrar').style.display = 'block';
          });
-
-
     </script>
+
     </body>
 </html>
