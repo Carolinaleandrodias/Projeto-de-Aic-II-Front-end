@@ -100,7 +100,9 @@ def login():
             login_user(usuario)  # Log the user in
             flash('Login realizado com sucesso!', 'success')
             # Redirect to the perfil page
-            return redirect(url_for('usuarios.perfil'))
+            # return redirect(url_for('usuarios.perfil'))
+            return redirect(url_for('usuarios.inicio'))
+
         else:
             # If email or password is incorrect, show a flash message
             print("Email or password is incorrect")
@@ -218,7 +220,20 @@ def agenda():
                          professor_emails=professor_emails,
                          professor_names=professor_names)
 
-
+@usuarios.route('/inicio')
+@login_required
+def inicio():
+    # Get professor emails for student affiliation
+    affiliations = [aff.professor_id for aff in Affiliation.query.filter_by(student_id=current_user.id).all()]
+    professor_emails = [prof.email for prof in Usuario.query.filter(Usuario.id.in_(affiliations)).all()]
+    
+    # Get all professor names
+    professors = Usuario.query.filter_by(user_type=1).all()
+    professor_names = {prof.email: prof.nome for prof in professors}
+    
+    return render_template('inicio.html', 
+                         professor_emails=professor_emails,
+                         professor_names=professor_names)
 
 @usuarios.route('/logout')
 @login_required

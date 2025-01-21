@@ -8,6 +8,25 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar-left">
+        <a class="navbar-brand">MENU</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/usuarios/inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/usuarios/agenda">Agendamentos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/usuarios/perfil">Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Sair</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <h1 class="text-center my-4">Perfil</h1>
         <form method="POST" action="{{ url_for('usuarios.perfil') }}">
@@ -54,7 +73,8 @@
         {% endif %}
         <div class="mt-4">
             <a href="{{ url_for('usuarios.logout') }}" class="btn btn-danger">Logout</a>
-            <a href="{{ url_for('usuarios.agenda') }}" class="btn btn-secondary">Ir para a Agenda</a>
+            <!-- <a href="{{ url_for('usuarios.agenda') }}" class="btn btn-secondary">Ir para a Agenda</a> -->
+            <a href="{{ url_for('usuarios.agenda') }}" class="btn btn-secondary">Inicio</a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
