@@ -100,7 +100,7 @@ def login():
             login_user(usuario)  # Log the user in
             flash('Login realizado com sucesso!', 'success')
             # Redirect to the perfil page
-            return redirect(url_for('usuarios.perfil', usuario=current_user))
+            return redirect(url_for('usuarios.perfil'))
         else:
             # If email or password is incorrect, show a flash message
             print("Email or password is incorrect")
