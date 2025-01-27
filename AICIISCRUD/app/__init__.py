@@ -1,20 +1,26 @@
 from flask import Flask
 from flask_login import LoginManager
-from .routes import main as main_blueprint
-from .config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from .models import db, Usuario 
-from .reservas import reservas as reservas_blueprint
-from .salas import salas as salas_blueprint
+from .usuarios import main as main_blueprint
 from .usuarios import usuarios as usuarios_blueprint
+#set FLASK_APP="__init__:create_app"
+#flask run
 
 
 def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
+    app = Flask(__name__, static_folder='static')
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
     app.config['SECRET_KEY'] = "212310"
+    app.config['SQLALCHEMY_ECHO'] = True  # Da o log das queries no console
 
     # Inicializar banco de dados
     db.init_app(app)
+    # db.create_all()
+    print('initialize database')
+    migrate = Migrate(app,db)
     login_manager = LoginManager(app)
     login_manager.login_view = 'usuarios.login'  # Redireciona usuários não logados para a rota de login
     @login_manager.user_loader
@@ -25,7 +31,5 @@ def create_app():
     # Registrar blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(usuarios_blueprint, url_prefix='/usuarios')
-    app.register_blueprint(reservas_blueprint, url_prefix='/reservas')
-    app.register_blueprint(salas_blueprint, url_prefix='/salas')  
 
     return app

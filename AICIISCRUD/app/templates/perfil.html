@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil do Usuário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/perfil.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Bem-vindo, {{ usuario.nome }}!</h1>
-    <p>Email: {{ usuario.email }}</p>
-    <p>Tipo de usuário: {{ usuario.tipo }}</p>
-    <a href="{{ url_for('main.logout') }}">Sair</a>
+    <div class="container">
+        <h1 class="text-center my-4">Perfil</h1>
+        <form method="POST" action="{{ url_for('usuarios.perfil') }}">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" name="nome" value="{{ usuario.nome }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="matricula">Matrícula</label>
+                <input type="text" class="form-control" id="matricula" name="matricula" value="{{ usuario.matricula }}" readonly>
+            </div>
+            {% if usuario.user_type == 1 %}
+            {% endif %}
+            <div class="form-group">
+                <label for="senha_atual">Senha Atual</label>
+                <input type="password" class="form-control" id="senha_atual" name="senha_atual">
+            </div>
+            <div class="form-group">
+                <label for="nova_senha">Nova Senha</label>
+                <input type="password" class="form-control" id="nova_senha" name="nova_senha">
+            </div>
+            <div class="form-group">
+                <label for="confirm_nova_senha">Confirmar Nova Senha</label>
+                <input type="password" class="form-control" id="confirm_nova_senha" name="confirm_nova_senha">
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
+        </form>
+        {% if usuario.user_type == 2 %}
+        <h2 class="mt-4">Professores</h2>
+        <form>
+            <div class="form-group">
+                {% for professor in professors %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="professor{{ professor.id }}" name="affiliations" value="{{ professor.id }}" {% if professor.id in affiliations %}checked{% endif %} onchange="updateAffiliation(this)">
+                    <label class="form-check-label" for="professor{{ professor.id }}">{{ professor.nome }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </form>
+        {% endif %}
+        <div class="mt-4">
+            <a href="{{ url_for('usuarios.logout') }}" class="btn btn-danger">Logout</a>
+            <a href="{{ url_for('usuarios.agenda') }}" class="btn btn-secondary">Ir para a Agenda</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateAffiliation(checkbox) {
+            const professorId = checkbox.value;
+            const action = checkbox.checked ? 'add' : 'remove';
+
+            fetch('{{ url_for("usuarios.update_affiliation") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'professor_id': professorId,
+                    'action': action
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  if (!data.success) {
+                      alert('Erro ao atualizar afiliação');
+                      checkbox.checked = !checkbox.checked;  // Revert checkbox state
+                  }
+              });
+        }
+    </script>
 </body>
 </html>

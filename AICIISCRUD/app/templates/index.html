@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Link das fontes tirado do google fonts. fonte: League Spartan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Fontes sempre antes do Style! -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>site de agendamento c3</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+</head>
+<body>
+    <img id="furg" src="{{url_for('static', filename = 'image/furg.png')}}"> 
+
+    <div class="container" id="main-container">
+        <a class="links" id="paracadastro"></a>
+        <a class="links" id="paralogin"></a>
+
+        <div class="toggle-container">
+            <div class="toggle"> 
+                <!--<img id="img1" src="unnamed.png">-->
+                <div class="toggle-panel toggle-left">
+                    <h1 id="text1">Olá, seja <br/> bem-vindo!</h1>
+                    <h1 id="text2">Sistema de agendamento de salas</h1>
+                    <p>Acesse a sua conta agora!</p>
+                    <img src="{{url_for('static', filename = 'image/agendamento-01.png')}}">
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA DE LOGIN -->
+        <div class="form-container sing-in">
+            <div id="entrar">
+                <form method="POST" action="{{ url_for('usuarios.login') }}" id="login">
+                    <h1> Entre na sua conta </h1>
+                    <button class="link" id="criar" type="button"> Criar uma conta nova </button>                            
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="senha" placeholder="Senha" required>
+                    <a href="#" id="forget">Esqueci a senha</a>
+                    <button type="submit">ENTRAR</button>
+                </form>
+            </div>
+        </div>  
+
+        <!-- TELA DE CADASTRO -->
+        <div id="cadastro" style="display: none;">      
+            <form method="POST" action="{{ url_for('usuarios.register') }}" id="register">  
+                <h1> Cadastro </h1>         
+                <p>
+                    <label for="nome">Nome completo </label>
+                    <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+                </p>
+                <p>
+                    <label for="data_nascimento">Data de nascimento</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                </p>
+                <p>
+                    <label for="email">E-mail </label>
+                    <input type="email" id="email" name="email" placeholder="E-mail" required>
+                </p>
+                <p>
+                    <label for="matricula">Matricula</label>
+                    <input type="text" id="matricula" name="matricula" placeholder="Matricula" required>
+                </p>
+                <p>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                </p>
+                <p>
+                    <label for="confirm_senha">Confirme a Senha</label>
+                    <input type="password" id="confirm_senha" name="confirm_senha" placeholder="Repita a Senha" required>
+                </p>
+                <p>
+                    <label for="user_type">Tipo de Usuário</label>
+                    <div class="select-container">
+                        <select class="form-control" id="user_type" name="user_type" required>
+                            <option value="1">Professor</option>
+                            <option value="2">Estudante</option>
+                        </select>
+                    </div>
+                </p>
+                <p>
+                    <button id='button' type="submit"> Cadastrar </button>
+                </p>
+                <p class="link">
+                    <button id="voltar" type="button"> Voltar </button>
+                </p>
+            </form>
+        </div>  
+    </div>
+
+    <script>
+        document.getElementById('criar').addEventListener('click', () => {
+            document.getElementById('entrar').style.display = 'none';
+            document.getElementById('cadastro').style.display = 'block';
+            document.getElementById('main-container').classList.add('register-mode');
+        });
+
+        document.getElementById('voltar').addEventListener('click', () => {
+            document.getElementById('cadastro').style.display = 'none';
+            document.getElementById('entrar').style.display = 'block';
+            document.getElementById('main-container').classList.remove('register-mode');
+        });
+    </script>
+</body>
+</html>
